@@ -15,7 +15,7 @@
         <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
             <li>
-                <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
+                <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.last_name }})</a>
                 <a class="btn btn-link" href="{% url 'onlinecourse:logout' %}">Logout</a>
             </li>
             {% else %}
@@ -53,13 +53,13 @@
             <!--HINT Display exam results-->
             {%for question in course.question_set.all%}
                 {% if choice.is_correct and choice in choices %}
-                <div class="text-success">Correct answer: {{ choice.choice_text }}</div>
+                <div class="text-success">Correct answer: {{ choice.choice_content}}</div>
                 {% else %}{%endif%}
                 {% if choice.is_correct and not choice in choices %}
-                <div class="text-warning">Correct answer: {{ choice.choice_text }}</div>
+                <div class="text-warning">Correct answer: {{ choice.choice_content }}</div>
                 {% else %}{%endif%}
                 {% if not choice.is_correct and choice in choices %}
-                <div class="text-danger">You got this wrong : {{ choice.choice_text }}</div>
+                <div class="text-danger">You got this wrong : {{ choice.choice_content }}</div>
                 {% else %}
                 {%endif%}
             {%endfor%}

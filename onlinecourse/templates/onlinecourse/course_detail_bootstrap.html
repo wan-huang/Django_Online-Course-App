@@ -19,7 +19,7 @@
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
                 <li>
-                    <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
+                    <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.last_name }})</a>
                     <a class="btn btn-link" href="{% url 'onlinecourse:logout' %}">Logout</a>
                 </li>
                 {% else %}
@@ -54,10 +54,11 @@
             <!-- <HINT> Use Bootstrap Collapse to hide exam first, more details could be found here
             https://www.w3schools.com/bootstrap4/bootstrap_collapse.asp-->
 
+            <button type="button" class="btn btn-primary" data-toggle="collapse" data_target="#exam">START EXAM</button>
+
             <!-- A collapse example here: -->
-            <div id="exam" class="collapse">
+            <div id="exam" class="collapse"> 
                 <!-- <HINT> If user is authenticated, show course exam with a list of question -->
-                {% if user.is_authenticated %}
                     <!-- <HINT> Each example will have many questions -->
                     <form id="questionform" action="{% url 'onlinecourse:submit' course.id %}" method="post">
                     {% for question in course.question_set.all %}
@@ -83,7 +84,6 @@
                 <input class="btn btn-success btn-block" type="submit" value="Submit">
                 </form>
                 </div>
-                {% endif %}
             </div>
 
             <!-- A choice submission form example
@@ -108,8 +108,7 @@
 
             <!--Check here to see more details Bootstrap checkbox
              https://www.w3schools.com/bootstrap4/bootstrap_forms_inputs.asp-->
-
-            </div>     
+  
     </div>
 </body>
 </html>
